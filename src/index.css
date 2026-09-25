@@ -1,0 +1,117 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-950: #060914;
+  --color-ink-900: #0b1022;
+  --color-ink-800: #121a33;
+  --color-ink-700: #1b2546;
+  --color-ink-600: #283561;
+  --color-jade-300: #7ff0c3;
+  --color-jade-400: #3fdca0;
+  --color-jade-500: #1fbf85;
+  --color-jade-600: #13966a;
+  --color-jade-700: #0d6e4f;
+  --color-gold-300: #ffe08a;
+  --color-gold-400: #f7c948;
+  --color-gold-500: #e0a82e;
+  --font-display: 'Cinzel', 'Georgia', serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ink-950);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+}
+
+/* Celestial background particles (CSS only, toggled via settings). */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.particles span {
+  position: absolute;
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--color-jade-300);
+  box-shadow: 0 0 6px var(--color-jade-400);
+  opacity: 0;
+  animation: rise linear infinite;
+}
+.particles span:nth-child(3n) {
+  background: var(--color-gold-300);
+  box-shadow: 0 0 6px var(--color-gold-400);
+}
+@keyframes rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(30px);
+    opacity: 0;
+  }
+}
+
+/* Component classes live in a layer so utilities can override them. */
+@layer components {
+  .panel {
+    background: color-mix(in oklab, var(--color-ink-900) 85%, transparent);
+    border: 1px solid var(--color-ink-700);
+    border-radius: 0.75rem;
+  }
+
+  .btn {
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    transition:
+      background-color 0.15s,
+      opacity 0.15s;
+    background: var(--color-ink-700);
+  }
+  .btn:hover:not(:disabled) {
+    background: var(--color-ink-600);
+  }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn-jade {
+    background: var(--color-jade-700);
+    color: white;
+  }
+  .btn-jade:hover:not(:disabled) {
+    background: var(--color-jade-600);
+  }
+  .btn-danger {
+    background: #7f1d1d;
+    color: white;
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: #991b1b;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particles {
+    display: none;
+  }
+}
